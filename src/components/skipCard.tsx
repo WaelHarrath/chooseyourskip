@@ -1,33 +1,7 @@
 import { Ban, Truck, Weight } from 'lucide-react'; // optional icons
-type Skip = {
-    id: number;
-    size: number;
-    hire_period_days: number;
-    price_before_vat: number;
-    vat: number;
-    allowed_on_road: boolean;
-    allows_heavy_waste: boolean;
-    postcode: string;
-    forbidden: boolean;
-};
+import { images } from '../constants/images';
+import type { Props } from '../types/propsType';
 
-type Props = {
-    skip: Skip;
-    isSelected: boolean;
-    onSelect: () => void;
-    cardRef: React.Ref<HTMLDivElement>;
-};
-const images: Record<number, string> = {
-    4: 'https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/4-yarder-skip.jpg',
-    6: 'https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/6-yarder-skip.jpg',
-    8: 'https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/8-yarder-skip.jpg',
-    10: 'https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/10-yarder-skip.jpg',
-    12: 'https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/12-yarder-skip.jpg',
-    14: 'https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/14-yarder-skip.jpg',
-    16: 'https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/16-yarder-skip.jpg',
-    20: 'https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/20-yarder-skip.jpg',
-    40: 'https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/40-yarder-skip.jpg'
-};
 const SkipCard = ({ skip, isSelected, onSelect, cardRef }: Props) => {
     const totalPrice = (skip.price_before_vat * (1 + skip.vat / 100)).toFixed(
         0
@@ -48,13 +22,14 @@ const SkipCard = ({ skip, isSelected, onSelect, cardRef }: Props) => {
                     src={images[skip.size]}
                     alt={`${skip.size} yard skip`}
                     className={`w-full h-full object-cover transition duration-300 ${
-                        isSelected ? 'brightness-50' : 'brightness-100'
+                        isSelected ? 'brightness-70' : 'brightness-100'
                     }`}
                 />
+
                 {isSelected && (
-                    <div className='absolute inset-0 flex items-center justify-center pointer-events-none'>
-                        <span className='text-blue-600 text-2xl font-bold bg-blue-100 bg-opacity-70 rounded-lg px-4 py-2'>
-                            Selected
+                    <div className='absolute top-2 right-2 pointer-events-none'>
+                        <span className='text-sm font-semibold text-white bg-blue-600 px-3 py-1 rounded-full shadow-md'>
+                            ✓ Selected
                         </span>
                     </div>
                 )}

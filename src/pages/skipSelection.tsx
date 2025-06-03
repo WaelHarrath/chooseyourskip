@@ -1,18 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import SkipCard from '../components/skipCard';
+import { images } from '../constants/images';
+import type { Skip } from '../types/skipType';
 
-type Skip = {
-    id: number;
-    size: number;
-    hire_period_days: number;
-    price_before_vat: number;
-    vat: number;
-    allowed_on_road: boolean;
-    allows_heavy_waste: boolean;
-    postcode: string;
-    forbidden: boolean;
-};
 
 const SkipSelection = () => {
     const [skips, setSkips] = useState<Skip[]>([]);
@@ -88,10 +79,16 @@ const SkipSelection = () => {
                             accessories may be featured at additional cost.
                         </p>
 
-                        {/* Skip details and price */}
                         <div className='flex items-center gap-6'>
-                            <div className='font-semibold text-lg'>
-                                {selectedSkip.size} Yard Skip
+                            <div className='flex items-center gap-2'>
+                                <img
+                                    src={images[selectedSkip.size]}
+                                    alt={`${selectedSkip.size} yard skip`}
+                                    className='w-14 h-10 object-cover object-center rounded-md'
+                                />
+                                <div className='font-semibold text-base sm:text-lg'>
+                                    <b>{selectedSkip.size}</b> Yard Skip
+                                </div>
                             </div>
 
                             <div className='relative'>
