@@ -52,12 +52,12 @@ const SkipSelection = () => {
 
     return (
         <div className='p-4 max-w-5xl mx-auto pb-32'>
-            {' '}
-            {/* padding bottom for sticky popup */}
             <h1 className='text-2xl font-bold mb-6'>Choose Your Skip Size</h1>
+            <p className='text-gray-600 mb-6'>
+                Select the skip size that best suits your needs
+            </p>
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {skips.map((skip) => {
-                    // Create a callback ref function to update map on mount/unmount
                     const setRef = (el: HTMLDivElement | null) => {
                         if (el) {
                             cardRefs.current.set(skip.id, el);
@@ -72,16 +72,15 @@ const SkipSelection = () => {
                             skip={skip}
                             isSelected={selectedId === skip.id}
                             onSelect={() => handleSelect(skip.id)}
-                            cardRef={setRef} // pass callback ref here
+                            cardRef={setRef}
                         />
                     );
                 })}
             </div>
-            {/* Sticky bottom popup */}
+
             {selectedSkip && (
                 <div className='fixed bottom-0 left-0 right-0 bg-white shadow-xl border-t border-gray-300 p-4 z-50'>
                     <div className='max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4'>
-                        {/* Disclaimer text */}
                         <p className='text-xs text-gray-600 flex-1 max-w-md'>
                             Imagery and information shown throughout this
                             website may not reflect the exact shape or size
@@ -105,7 +104,6 @@ const SkipSelection = () => {
                             </div>
                         </div>
 
-                        {/* Action buttons */}
                         <div className='flex gap-3'>
                             <button
                                 onClick={handleBack}
