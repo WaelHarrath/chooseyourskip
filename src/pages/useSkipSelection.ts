@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 import type { Skip } from '../types/skipType';
 
@@ -37,9 +38,13 @@ const useSkipSelection = () => {
         : null;
 
     const handleBack = () => setSelectedId(null);
-    const handleContinue = () =>
-        alert(`Continue with ${selectedSkip?.size} Yard Skip`);
-
+    const handleContinue = () => {
+        if (selectedSkip) {
+            toast.success(`Continue with ${selectedSkip.size} Yard Skip`);
+        } else {
+            toast.error('Please select a skip to continue.');
+        }
+    };
     return {
         totalPrice,
         handleBack,
