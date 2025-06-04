@@ -4,7 +4,6 @@ import SkipCard from '../components/skipCard';
 import { images } from '../constants/images';
 import type { Skip } from '../types/skipType';
 
-
 const SkipSelection = () => {
     const [skips, setSkips] = useState<Skip[]>([]);
     const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -112,7 +111,7 @@ const SkipSelection = () => {
                             </button>
                             <button
                                 onClick={handleContinue}
-                                className='py-2 px-5 rounded-lg bg-blue-600 text-black font-semibold 
+                                className='py-2 px-5 rounded-lg bg-blue-600 text-white font-semibold 
                hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
                transition duration-200 text-sm'
                             >
