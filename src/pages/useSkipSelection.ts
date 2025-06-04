@@ -4,12 +4,16 @@ import type { Skip } from '../types/skipType';
 
 const useSkipSelection = () => {
     const [skips, setSkips] = useState<Skip[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [selectedId, setSelectedId] = useState<number | null>(null);
     const cardRefs = useRef(new Map<number, HTMLDivElement | null>());
     useEffect(() => {
         axios
             .get(import.meta.env.VITE_API_URL)
-            .then((res) => setSkips(res.data))
+            .then((res) => {
+                setSkips(res.data);
+                setIsLoading(false);
+            })
             .catch(console.error);
     }, []);
     useEffect(() => {
@@ -44,7 +48,8 @@ const useSkipSelection = () => {
         skips,
         selectedId,
         cardRefs,
-        selectedSkip
+        selectedSkip,
+        isLoading
     };
 };
 

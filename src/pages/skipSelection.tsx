@@ -1,4 +1,5 @@
 import SkipCard from '../components/skipCard';
+import SkipCardLoader from '../components/skipCardLoader';
 import { images } from '../constants/images';
 
 import useSkipSelection from './useSkipSelection';
@@ -12,7 +13,8 @@ const SkipSelection = () => {
         skips,
         selectedId,
         cardRefs,
-        selectedSkip
+        selectedSkip,
+        isLoading
     } = useSkipSelection();
 
     return (
@@ -22,25 +24,30 @@ const SkipSelection = () => {
                 Select the skip size that best suits your needs
             </p>
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
-                {skips.map((skip) => {
-                    const setRef = (el: HTMLDivElement | null) => {
-                        if (el) {
-                            cardRefs.current.set(skip.id, el);
-                        } else {
-                            cardRefs.current.delete(skip.id);
-                        }
-                    };
+                {isLoading
+                    ? Array(6)
+                          .fill(0)
+                          .map((_, i) => <SkipCardLoader key={i} />)
+                    : skips.map((skip) => {
+                          const setRef = (el: HTMLDivElement | null) => {
+                              if (el) {
+                                  cardRefs.current.set(skip.id, el);
+                              } else {
+                                  cardRefs.current.delete(skip.id);
+                              }
+                          };
 
-                    return (
-                        <SkipCard
-                            key={skip.id}
-                            skip={skip}
-                            isSelected={selectedId === skip.id}
-                            onSelect={() => handleSelect(skip.id)}
-                            cardRef={setRef}
-                        />
-                    );
-                })}
+                          return (
+                              <SkipCard
+                                  key={skip.id}
+                                  skip={skip}
+                                  isSelected={selectedId === skip.id}
+                                  onSelect={() => handleSelect(skip.id)}
+                                  cardRef={setRef}
+                                  loading={isLoading}
+                              />
+                          );
+                      })}
             </div>
 
             {selectedSkip && (

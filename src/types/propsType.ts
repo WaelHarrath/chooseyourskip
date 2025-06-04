@@ -5,4 +5,5 @@ export type Props = {
     isSelected: boolean;
     onSelect: () => void;
     cardRef: React.Ref<HTMLDivElement>;
+    loading?: boolean;
 };
