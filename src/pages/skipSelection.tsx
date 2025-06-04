@@ -51,57 +51,59 @@ const SkipSelection = () => {
             </div>
 
             {selectedSkip && (
-                <div className='fixed bottom-0 left-0 right-0 bg-white shadow-xl border-t border-gray-300 p-4 z-50'>
-                    <div className='max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4'>
-                        <p className='text-xs text-gray-600 flex-1 max-w-md'>
+                <footer className='fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-white shadow-xl border-t border-gray-200 rounded-xl z-50 w-[calc(100%-2rem)] max-w-7xl px-6 py-5'>
+                    <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
+                        <p className='text-xs text-gray-600 sm:max-w-md'>
                             Imagery and information shown throughout this
                             website may not reflect the exact shape or size
                             specification, colours may vary, options and/or
                             accessories may be featured at additional cost.
                         </p>
 
-                        <div className='flex items-center gap-6'>
-                            <div className='flex items-center gap-2'>
+                        <div className='flex flex-col sm:flex-row items-center gap-6 flex-1 justify-center'>
+                            <div className='flex items-center gap-4 min-w-0'>
                                 <img
                                     src={images[selectedSkip.size]}
                                     alt={`${selectedSkip.size} yard skip`}
-                                    className='w-14 h-10 object-cover object-center rounded-md'
+                                    className='w-24 h-16 object-cover rounded-md border border-gray-200'
                                 />
-                                <div className='font-semibold text-base sm:text-lg'>
-                                    <b>{selectedSkip.size}</b> Yard Skip
+                                <div className='min-w-0'>
+                                    <div className='text-base sm:text-lg font-semibold text-gray-900 truncate'>
+                                        {selectedSkip.size} Yard Skip
+                                    </div>
+                                    <small className='text-gray-500'>
+                                        Hire Period:{' '}
+                                        {selectedSkip.hire_period_days} days
+                                    </small>
                                 </div>
                             </div>
 
-                            <div className='relative'>
-                                <div className='text-blue-700 font-extrabold text-xl'>
+                            <div className='text-right min-w-[100px]'>
+                                <div className='text-2xl sm:text-3xl font-bold text-blue-600'>
                                     £{totalPrice}
                                 </div>
-                                <div className='text-blue-600 text-xs text-right'>
-                                    {selectedSkip.hire_period_days} day hire
-                                </div>
+                                <small className='text-gray-500'>
+                                    VAT included
+                                </small>
                             </div>
                         </div>
 
-                        <div className='flex gap-3'>
+                        <div className='flex gap-3 shrink-0'>
                             <button
                                 onClick={handleBack}
-                                className='py-2 px-5 rounded-lg border border-gray-300 bg-gray-100 text-gray-700 
-               hover:bg-gray-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 
-               transition duration-200 text-sm font-medium'
+                                className='px-5 py-2 border border-gray-300 rounded-lg text-gray-700 bg-gray-100 hover:bg-gray-200 hover:shadow-md transition text-sm font-medium'
                             >
                                 Back
                             </button>
                             <button
                                 onClick={handleContinue}
-                                className='py-2 px-5 rounded-lg bg-blue-600 text-white font-semibold 
-               hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
-               transition duration-200 text-sm'
+                                className='px-6 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 hover:shadow-lg transition text-sm'
                             >
                                 Continue
                             </button>
                         </div>
                     </div>
-                </div>
+                </footer>
             )}
         </div>
     );
