@@ -1,44 +1,19 @@
-import { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
 import SkipCard from '../components/skipCard';
 import { images } from '../constants/images';
-import type { Skip } from '../types/skipType';
+
+import useSkipSelection from './useSkipSelection';
 
 const SkipSelection = () => {
-    const [skips, setSkips] = useState<Skip[]>([]);
-    const [selectedId, setSelectedId] = useState<number | null>(null);
-    const cardRefs = useRef(new Map<number, HTMLDivElement | null>());
-    useEffect(() => {
-        axios
-            .get(
-                'https://app.wewantwaste.co.uk/api/skips/by-location?postcode=NR32&area=Lowestoft'
-            )
-            .then((res) => setSkips(res.data))
-            .catch(console.error);
-    }, []);
-    useEffect(() => {
-        if (selectedId !== null) {
-            const el = cardRefs.current.get(selectedId);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
-    }, [selectedId]);
-    const handleSelect = (id: number) => {
-        setSelectedId((prev) => (prev === id ? null : id));
-    };
-
-    const selectedSkip = skips.find((skip) => skip.id === selectedId) || null;
-    const totalPrice = selectedSkip
-        ? (
-              selectedSkip.price_before_vat *
-              (1 + selectedSkip.vat / 100)
-          ).toFixed(0)
-        : null;
-
-    const handleBack = () => setSelectedId(null);
-    const handleContinue = () =>
-        alert(`Continue with ${selectedSkip?.size} Yard Skip`);
+    const {
+        totalPrice,
+        handleBack,
+        handleContinue,
+        handleSelect,
+        skips,
+        selectedId,
+        cardRefs,
+        selectedSkip
+    } = useSkipSelection();
 
     return (
         <div className='p-4 max-w-5xl mx-auto pb-32'>
