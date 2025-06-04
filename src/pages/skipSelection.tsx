@@ -51,7 +51,7 @@ const SkipSelection = () => {
             </div>
 
             {selectedSkip && (
-                <footer className='fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-white shadow-xl border-t border-gray-200 rounded-xl z-50 w-[calc(100%-2rem)] max-w-7xl px-6 py-5'>
+                <footer className='fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-white shadow-xl border-t border-gray-200 rounded-xl z-50 w-[calc(100%-2rem)] max-w-7xl px-4 py-5'>
                     <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
                         <p className='text-xs text-gray-600 sm:max-w-md'>
                             Imagery and information shown throughout this
@@ -61,11 +61,11 @@ const SkipSelection = () => {
                         </p>
 
                         <div className='flex flex-col sm:flex-row items-center gap-6 flex-1 justify-center'>
-                            <div className='flex items-center gap-4 min-w-0'>
+                            <div className='flex items-center gap-3 min-w-0'>
                                 <img
                                     src={images[selectedSkip.size]}
                                     alt={`${selectedSkip.size} yard skip`}
-                                    className='w-24 h-16 object-cover rounded-md border border-gray-200'
+                                    className='w-20 h-14 object-cover rounded-md border border-gray-200'
                                 />
                                 <div className='min-w-0'>
                                     <div className='text-base sm:text-lg font-semibold text-gray-900 truncate'>
@@ -78,8 +78,8 @@ const SkipSelection = () => {
                                 </div>
                             </div>
 
-                            <div className='text-right min-w-[100px]'>
-                                <div className='text-2xl sm:text-3xl font-bold text-blue-600'>
+                            <div className='text-right min-w-[80px]'>
+                                <div className='text-xl sm:text-3xl font-bold text-blue-600'>
                                     £{totalPrice}
                                 </div>
                                 <small className='text-gray-500'>
@@ -88,16 +88,16 @@ const SkipSelection = () => {
                             </div>
                         </div>
 
-                        <div className='flex gap-3 shrink-0'>
+                        <div className='flex gap-3 shrink-0 justify-center sm:justify-start'>
                             <button
                                 onClick={handleBack}
-                                className='px-5 py-2 border border-gray-300 rounded-lg text-gray-700 bg-gray-100 hover:bg-gray-200 hover:shadow-md transition text-sm font-medium'
+                                className='px-4 py-2 border border-gray-300 rounded-lg text-gray-700 bg-gray-100 hover:bg-gray-200 hover:shadow-md transition text-sm font-medium'
                             >
                                 Back
                             </button>
                             <button
                                 onClick={handleContinue}
-                                className='px-6 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 hover:shadow-lg transition text-sm'
+                                className='px-5 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 hover:shadow-lg transition text-sm'
                             >
                                 Continue
                             </button>
