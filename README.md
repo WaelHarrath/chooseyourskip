@@ -29,19 +29,3 @@ The provided API did **not** include skip images. To maintain a complete visual 
 ## Testing & Development Notes
 
 -   **`.env` file is intentionally committed** for testing and review purposes. In a real production environment, environment variables (such as API base URLs or keys) should be excluded using `.gitignore`.
-
-## 📁 Project Structure
-
-```bash
-src/
-├── components/
-│   ├── SkipCard.tsx         # Individual skip card component
-│   └── SkipSelection.tsx    # Main skip selection view
-├── constants/
-│   └── images.ts            # Static image mapping by skip size
-├── hooks/
-│   └── useSkipSelection.ts  # Custom hook for skip logic
-├── types/
-│   └── propsType.ts         # Type definitions for components
-└── App.tsx                  # Entry point with routing or integration
-```
