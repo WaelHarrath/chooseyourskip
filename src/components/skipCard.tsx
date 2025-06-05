@@ -11,13 +11,17 @@ const SkipCard = ({ skip, isSelected, onSelect, cardRef }: Props) => {
         <div
             ref={cardRef}
             onClick={onSelect}
-            className={`flex flex-col rounded-2xl overflow-hidden shadow-md border ${
-                isSelected
-                    ? 'border-blue-500 ring-2 ring-blue-300 bg-blue-50 shadow-lg scale-105 z-10'
-                    : 'border-gray-200 hover:shadow-lg hover:scale-[1.02]'
-            } transition hover:shadow-lg cursor-pointer`}
+            className={`flex w-full flex-col sm:flex-row rounded-2xl overflow-hidden shadow-md border cursor-pointer transition
+                ${
+                    isSelected
+                        ? 'border-blue-500 ring-2 ring-blue-300 bg-blue-50 shadow-lg scale-105 z-10'
+                        : 'border-gray-200 hover:shadow-lg hover:scale-[1.02]'
+                }
+            `}
+            style={{ minHeight: '180px' }} // consistent height
         >
-            <div className='relative w-full h-44'>
+            {/* Image container */}
+            <div className='w-full sm:w-2/5 relative flex-shrink-0'>
                 <img
                     src={images[skip.size]}
                     alt={`${skip.size} yard skip`}
@@ -25,9 +29,8 @@ const SkipCard = ({ skip, isSelected, onSelect, cardRef }: Props) => {
                         isSelected ? 'brightness-70' : 'brightness-100'
                     }`}
                 />
-
                 {isSelected && (
-                    <div className='absolute top-2 right-2 pointer-events-none'>
+                    <div className='absolute top-2 left-2 sm:left-2 right-auto pointer-events-none'>
                         <span className='text-sm font-semibold text-white bg-blue-600 px-3 py-1 rounded-full shadow-md'>
                             ✓ Selected
                         </span>
@@ -35,16 +38,17 @@ const SkipCard = ({ skip, isSelected, onSelect, cardRef }: Props) => {
                 )}
             </div>
 
-            <div className='p-4 flex-1 flex flex-col justify-between'>
+    
+            <div className='w-full sm:w-3/5 p-6 flex flex-col justify-between'>
                 <div>
-                    <h2 className='text-xl font-bold mb-1'>
+                    <h2 className='text-xl font-bold mb-2'>
                         {skip.size} Yard Skip
                     </h2>
-                    <p className='text-sm text-gray-500 mb-3'>
+                    <p className='text-sm text-gray-500 mb-4'>
                         Hire for {skip.hire_period_days} days
                     </p>
 
-                    <div className='flex flex-wrap gap-2 mb-4'>
+                  <div className="badges-container px-4 sm:px-0 mt-3 mb-3 pt-2 flex flex-wrap gap-3 justify-center sm:justify-start items-center w-full">
                         {skip.allowed_on_road ? (
                             <span className='flex items-center gap-1 px-2 py-1 text-xs rounded-full bg-green-100 text-green-700'>
                                 <Truck size={14} /> On Road
@@ -65,7 +69,6 @@ const SkipCard = ({ skip, isSelected, onSelect, cardRef }: Props) => {
                             </span>
                         )}
                     </div>
-
                     {skip.forbidden && (
                         <p className='text-sm text-red-600 font-medium mt-1'>
                             ⚠️ Not currently available
@@ -73,11 +76,11 @@ const SkipCard = ({ skip, isSelected, onSelect, cardRef }: Props) => {
                     )}
                 </div>
 
-                <div className='mt-auto pt-3 border-t flex justify-between items-center'>
-                    <span className='text-sm text-gray-400'>
+                <div className='mt-auto pt-4 border-t flex justify-between items-center'>
+                    <span className='text-sm text-gray-400 whitespace-nowrap'>
                         Postcode: {skip.postcode}
                     </span>
-                    <span className='text-lg font-bold text-blue-600'>
+                    <span className='text-xl font-bold text-blue-600'>
                         £{totalPrice}
                     </span>
                 </div>

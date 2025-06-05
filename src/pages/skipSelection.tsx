@@ -23,7 +23,7 @@ const SkipSelection = () => {
             <p className='text-gray-600 mb-6'>
                 Select the skip size that best suits your needs
             </p>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+            <div className='flex flex-col gap-6'>
                 {isLoading
                     ? Array(6)
                           .fill(0)
